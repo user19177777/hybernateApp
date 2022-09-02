@@ -14,12 +14,25 @@ public class Item {
     private int id;
     @Column(name = "name")
     private String name;
+    @ManyToOne
+    //внешний ключ
+    @JoinColumn(name = "person_id",referencedColumnName = "id")
+    private Person person;
 
     public Item() {
     }
 
-    public Item(String name) {
+    public Item(String name,Person person) {
+        this.person = person;
         this.name = name;
+    }
+
+    public Person getPerson() {
+        return person;
+    }
+
+    public void setPerson(Person person) {
+        this.person = person;
     }
 
     public int getId() {

@@ -2,6 +2,7 @@ package org.example.models;
 
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "Person")
@@ -14,7 +15,16 @@ public class Person {
     String name;
     @Column(name = "age")
     int age;
+    @OneToMany(mappedBy = "person")
+    private List<Item> items ;
 
+    public List<Item> getItems() {
+        return items;
+    }
+
+    public void setItems(List<Item> items) {
+        this.items = items;
+    }
 
     public int getId() {
         return id;
