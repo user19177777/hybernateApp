@@ -803,9 +803,10 @@ false Zulu
     <database id="5" parent="1" name="test_db">
       <ObjectId>40985</ObjectId>
       <Owner>postgres</Owner>
-      <IntrospectionStateNumber>41577</IntrospectionStateNumber>
+      <IntrospectionStateNumber>41580</IntrospectionStateNumber>
       <Current>1</Current>
       <Relations>sequence|table|40993|40994|1
+sequence|table|41001|41002|1
 </Relations>
     </database>
     <role id="6" parent="1" name="pg_database_owner">
@@ -885,7 +886,7 @@ UC/10
 </Acl>
       <StateNumber>527</StateNumber>
       <Owner>postgres</Owner>
-      <IntrospectionStateNumber>41578</IntrospectionStateNumber>
+      <IntrospectionStateNumber>41581</IntrospectionStateNumber>
       <Current>1</Current>
     </schema>
     <extension id="23" parent="5" name="plpgsql">
@@ -985,18 +986,61 @@ UC/10
       <HandlerId>335</HandlerId>
       <Type>index</Type>
     </access-method>
-    <sequence id="35" parent="22" name="person_id_seq">
+    <sequence id="35" parent="22" name="item_id_seq">
+      <ObjectId>41001</ObjectId>
+      <Owner>postgres</Owner>
+      <StateNumber>41579</StateNumber>
+      <DataType>integer|0s</DataType>
+    </sequence>
+    <sequence id="36" parent="22" name="person_id_seq">
       <ObjectId>40993</ObjectId>
       <Owner>postgres</Owner>
       <StateNumber>41559</StateNumber>
       <DataType>integer|0s</DataType>
     </sequence>
-    <table id="36" parent="22" name="person">
+    <table id="37" parent="22" name="item">
+      <ObjectId>41002</ObjectId>
+      <Owner>postgres</Owner>
+      <StateNumber>41579</StateNumber>
+    </table>
+    <table id="38" parent="22" name="person">
       <ObjectId>40994</ObjectId>
       <Owner>postgres</Owner>
-      <StateNumber>41573</StateNumber>
+      <StateNumber>41579</StateNumber>
     </table>
-    <column id="37" parent="36" name="id">
+    <column id="39" parent="37" name="id">
+      <Position>1</Position>
+      <DataType>integer|0s</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>41579</StateNumber>
+      <TypeId>23</TypeId>
+      <IdentityKind>by-default</IdentityKind>
+    </column>
+    <column id="40" parent="37" name="name">
+      <Position>2</Position>
+      <DataType>varchar(100)|0s</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>41579</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="41" parent="37" name="person_id">
+      <Position>3</Position>
+      <DataType>integer|0s</DataType>
+      <StateNumber>41579</StateNumber>
+      <TypeId>23</TypeId>
+    </column>
+    <foreign-key id="42" parent="37" name="item_person_id_fkey">
+      <ObjectId>41005</ObjectId>
+      <StateNumber>41579</StateNumber>
+      <ColNames>person_id</ColNames>
+      <RefTableId>40994</RefTableId>
+      <RefColPositions>1</RefColPositions>
+      <RefTableName>person</RefTableName>
+      <RefKeyName>person_pkey</RefKeyName>
+      <RefColNames>id</RefColNames>
+      <OnDelete>set-null</OnDelete>
+    </foreign-key>
+    <column id="43" parent="38" name="id">
       <Position>1</Position>
       <DataType>integer|0s</DataType>
       <NotNull>1</NotNull>
@@ -1004,19 +1048,19 @@ UC/10
       <TypeId>23</TypeId>
       <IdentityKind>by-default</IdentityKind>
     </column>
-    <column id="38" parent="36" name="name">
+    <column id="44" parent="38" name="name">
       <Position>2</Position>
       <DataType>varchar|0s</DataType>
       <StateNumber>41559</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="39" parent="36" name="age">
+    <column id="45" parent="38" name="age">
       <Position>3</Position>
       <DataType>integer|0s</DataType>
       <StateNumber>41559</StateNumber>
       <TypeId>23</TypeId>
     </column>
-    <index id="40" parent="36" name="person_pkey">
+    <index id="46" parent="38" name="person_pkey">
       <ObjectId>40999</ObjectId>
       <StateNumber>41559</StateNumber>
       <ColNames>id</ColNames>
@@ -1026,7 +1070,7 @@ UC/10
       <CollationIds>0</CollationIds>
       <ClassIds>1978</ClassIds>
     </index>
-    <key id="41" parent="36" name="person_pkey">
+    <key id="47" parent="38" name="person_pkey">
       <ObjectId>41000</ObjectId>
       <StateNumber>41559</StateNumber>
       <ColNames>id</ColNames>
