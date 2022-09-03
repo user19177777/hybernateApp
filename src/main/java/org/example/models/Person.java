@@ -1,6 +1,8 @@
 package org.example.models;
 
 
+import org.hibernate.annotations.Cascade;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -16,6 +18,8 @@ public class Person {
     @Column(name = "age")
     int age;
     @OneToMany(mappedBy = "person")
+    //настраивает каскадирование
+    @Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE})
     private List<Item> items ;
 
     public List<Item> getItems() {

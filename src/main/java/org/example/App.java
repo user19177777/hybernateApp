@@ -28,12 +28,17 @@ public class App
             session.beginTransaction();
 
 
-            Person person = session.get(Person.class,7);
-            Item item = new Item("item777",person);
+            Person person = new Person("person7",44);
+            Item item1 = new Item("item778",person);
+            Item item2 = new Item("item779",person);
+            Item item3 = new Item("item780",person);
 
-            person.setItems(new ArrayList<Item>(Collections.singletonList(item)));
-            session.update(person);
-            session.save(item);
+            person.setItems(new ArrayList<Item>(Collections.singletonList(item1)));
+            person.setItems(new ArrayList<Item>(Collections.singletonList(item2)));
+            //person.setItems(new ArrayList<Item>(Collections.singletonList(item3)));
+
+            //сохранит в бд и person и item
+            session.save(person);
 
             session.getTransaction().commit();
         }finally {
