@@ -17,18 +17,10 @@ public class Person {
     String name;
     @Column(name = "age")
     int age;
-    @OneToMany(mappedBy = "person")
-    //настраивает каскадирование
-    @Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE})
-    private List<Item> items ;
 
-    public List<Item> getItems() {
-        return items;
-    }
-
-    public void setItems(List<Item> items) {
-        this.items = items;
-    }
+    @OneToOne(mappedBy = "person")
+    @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
+    private Passport passport;
 
     public int getId() {
         return id;
@@ -55,6 +47,14 @@ public class Person {
     }
 
     public Person() {
+    }
+
+    public Passport getPassport() {
+        return passport;
+    }
+
+    public void setPassport(Passport passport) {
+        this.passport = passport;
     }
 
     public Person(String name, int age) {
