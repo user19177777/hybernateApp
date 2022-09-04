@@ -1,8 +1,6 @@
 package org.example;
 
-import org.example.models.Item;
-import org.example.models.Passport;
-import org.example.models.Person;
+import org.example.models.*;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
@@ -20,23 +18,25 @@ public class App
     public static void main( String[] args )
     {
         //конфигурируем Hibernate, добавляем класс с @Entity
-        Configuration configuration = new Configuration().addAnnotatedClass(Person.class)
-                .addAnnotatedClass(Passport.class);
+        Configuration configuration = new Configuration().addAnnotatedClass(Actor.class)
+                .addAnnotatedClass(Movie.class);
         SessionFactory sessionFactory = configuration.buildSessionFactory();
 
-        Session session = sessionFactory.getCurrentSession();
-        try {
+
+        try (sessionFactory){
+            Session session = sessionFactory.getCurrentSession();
             session.beginTransaction();
 
-            Person person = session.get(Person.class,25);
-
-            //removed state
-            session.remove(person);
+            Actor actor = session.get(Actor.class,10);
+            Movie movie1 = session.get(Movie.class,28);
+            Movie movie2 = session.get(Movie.class,29);
+            Movie movie3 = session.get(Movie.class,30);
+            actor.setMovies(new ArrayList<>(List.of(movie1,movie2,movie3)));
+            List<Movie> movies = actor.getMovies();
+            for (Movie movie:movies)
+                System.out.println(movie.getName());
 
             session.getTransaction().commit();
-        }finally {
-            sessionFactory.close();
         }
-
     }
 }
