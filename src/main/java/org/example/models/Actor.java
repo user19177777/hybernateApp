@@ -14,7 +14,9 @@ public class Actor {
     private int id;
     @Column(name = "name")
     private String name;
-    @ManyToMany
+    @ManyToMany(
+            //fetch type. @*ToMany - по умолчанию ленивая lazy, @*ToOne - eager
+            fetch = FetchType.EAGER)
     @JoinTable(
             name = "Actor_movie",
             joinColumns = @JoinColumn(name = "actor_id"),

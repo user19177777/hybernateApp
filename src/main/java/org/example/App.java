@@ -28,15 +28,10 @@ public class App
             session.beginTransaction();
 
             Actor actor = session.get(Actor.class,10);
-            Movie movie1 = session.get(Movie.class,28);
-            Movie movie2 = session.get(Movie.class,29);
-            Movie movie3 = session.get(Movie.class,30);
-            actor.setMovies(new ArrayList<>(List.of(movie1,movie2,movie3)));
-            List<Movie> movies = actor.getMovies();
-            for (Movie movie:movies)
-                System.out.println(movie.getName());
 
             session.getTransaction().commit();
+            //eager выставлено, поэтому подгружены связанные сущности, поэтому есть доступ вне сессии, объект на котором вызываются геттеры должен быть в Persistent context
+            System.out.println(actor.getMovies());
         }
     }
 }

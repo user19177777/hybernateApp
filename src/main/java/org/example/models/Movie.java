@@ -12,7 +12,7 @@ public class Movie {
     private int id;
     @Column(name = "name")
     private String name;
-    @ManyToMany(mappedBy = "movies")
+    @ManyToMany(mappedBy = "movies",fetch = FetchType.EAGER)
     private List<Actor>actors;
 
     public Movie() {
@@ -45,4 +45,6 @@ public class Movie {
     public void setActors(List<Actor> actors) {
         this.actors = actors;
     }
+
+
 }
